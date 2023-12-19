@@ -48,6 +48,12 @@
       <version>1.7.36</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>4.3.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -87,7 +93,7 @@
             <goals>
               <goal>jar</goal>
             </goals>
-            <configuration> <!-- add this to disable checking -->
+            <configuration>
               <additionalparam>-Xdoclint:none</additionalparam>
             </configuration>
           </execution>
