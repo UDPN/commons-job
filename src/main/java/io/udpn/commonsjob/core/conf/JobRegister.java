@@ -23,9 +23,9 @@ public class JobRegister implements SmartInitializingSingleton {
   public void afterSingletonsInstantiated() {
 
     if (jobDiscoveryProperties.getAddresses() != null && !jobDiscoveryProperties.getAddresses().equals("")) {
-      logger.info("===== 地址是：" + jobDiscoveryProperties.getAddresses());
+      logger.info("===== addresses:" + jobDiscoveryProperties.getAddresses());
     } else {
-      logger.info("===== 地址是空的！");
+      logger.info("===== Addresses in null!");
     }
 
     Reflections reflections = new Reflections(new ConfigurationBuilder()
@@ -38,8 +38,8 @@ public class JobRegister implements SmartInitializingSingleton {
 
       JobParam annotation = method.getAnnotation(JobParam.class);
 
-      logger.info("表达式：{}",annotation.cron());
-      logger.info("Handler：{}",annotation.handler());
+      logger.info("cron:{}",annotation.cron());
+      logger.info("Handler:{}",annotation.handler());
 
     }
 
