@@ -1,4 +1,4 @@
-package io.udpn.commonssjob.utils;
+package io.udpn.commonsjob.utils;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

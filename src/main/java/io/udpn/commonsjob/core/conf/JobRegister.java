@@ -1,7 +1,7 @@
-package io.udpn.commonssjob.core.conf;
+package io.udpn.commonsjob.core.conf;
 
-import io.udpn.commonssjob.core.annotation.JobParam;
-import io.udpn.commonssjob.utils.JobDiscoveryProperties;
+import io.udpn.commonsjob.core.annotation.JobParam;
+import io.udpn.commonsjob.utils.JobDiscoveryProperties;
 import java.lang.reflect.Method;
 import java.util.Set;
 import org.reflections.Reflections;

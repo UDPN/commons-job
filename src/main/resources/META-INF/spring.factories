@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.udpn.commonssjob.core.conf.JobConfig
+io.udpn.commonsjob.core.conf.JobConfig

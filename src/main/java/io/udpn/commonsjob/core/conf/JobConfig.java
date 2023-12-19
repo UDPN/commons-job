@@ -1,6 +1,6 @@
-package io.udpn.commonssjob.core.conf;
+package io.udpn.commonsjob.core.conf;
 
-import io.udpn.commonssjob.utils.JobDiscoveryProperties;
+import io.udpn.commonsjob.utils.JobDiscoveryProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
