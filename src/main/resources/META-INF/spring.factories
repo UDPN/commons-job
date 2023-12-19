@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.reddata.job.core.conf.JobConfig
+io.udpn.commonssjob.core.conf.JobConfig

@@ -1,11 +1,8 @@
-package com.reddata.job.core.conf;
+package io.udpn.commonssjob.core.conf;
 
-import com.reddata.job.core.annotation.JobParam;
-import com.reddata.job.core.annotation.OpenJobRegister;
-import com.reddata.job.utils.JobDiscoveryProperties;
-import java.lang.annotation.Annotation;
+import io.udpn.commonssjob.core.annotation.JobParam;
+import io.udpn.commonssjob.utils.JobDiscoveryProperties;
 import java.lang.reflect.Method;
-import java.util.Map;
 import java.util.Set;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
@@ -14,8 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.AnnotationAttributes;
-import org.springframework.core.annotation.AnnotationUtils;
 
 public class JobRegister implements SmartInitializingSingleton {
 

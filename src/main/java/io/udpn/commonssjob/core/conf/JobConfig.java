@@ -1,11 +1,8 @@
-package com.reddata.job.core.conf;
+package io.udpn.commonssjob.core.conf;
 
-import com.reddata.job.utils.JobDiscoveryProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import io.udpn.commonssjob.utils.JobDiscoveryProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 public class JobConfig {

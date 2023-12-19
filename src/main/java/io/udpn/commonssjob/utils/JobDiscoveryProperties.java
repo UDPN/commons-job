@@ -1,4 +1,4 @@
-package com.reddata.job.utils;
+package io.udpn.commonssjob.utils;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

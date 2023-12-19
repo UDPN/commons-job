@@ -1,4 +1,4 @@
-package com.reddata.job.core.annotation;
+package io.udpn.commonssjob.core.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -6,11 +6,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target({ElementType.TYPE})
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-public @interface OpenJobRegister {
+public @interface JobParam {
 
-  String value();
+  String handler();
 
+  String cron();
 }
