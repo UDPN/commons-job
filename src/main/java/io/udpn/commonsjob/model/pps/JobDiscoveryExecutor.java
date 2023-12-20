@@ -7,11 +7,21 @@ public class JobDiscoveryExecutor {
 
   private String appname;
 
+  private Boolean update;
+
   public String getAppname() {
     return appname;
   }
 
   public void setAppname(String appname) {
     this.appname = appname;
+  }
+
+  public Boolean getUpdate() {
+    return update;
+  }
+
+  public void setUpdate(Boolean update) {
+    this.update = update;
   }
 }

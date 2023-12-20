@@ -3,11 +3,16 @@ package io.udpn.commonsjob.core;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import io.udpn.commonsjob.core.annotation.JobParam;
+import io.udpn.commonsjob.enums.GlueTypeEnum;
+import io.udpn.commonsjob.enums.InterfaceEnum;
+import io.udpn.commonsjob.model.param.InSigUpGroup;
+import io.udpn.commonsjob.model.param.InSigUpJob;
 import io.udpn.commonsjob.model.pps.JobDiscovery;
 import io.udpn.commonsjob.model.pps.JobDiscoveryAdmin;
 import io.udpn.commonsjob.model.pps.JobDiscoveryExecutor;
 import io.udpn.commonsjob.model.pps.JobDiscoveryScanPackage;
 import io.udpn.commonsjob.utils.OkHttpUtil;
+import io.udpn.commonsjob.utils.ScheduleType;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,34 +65,43 @@ public class JobRegister implements SmartInitializingSingleton {
 
     if (methods != null && methods.size() > 0) {
 
+      boolean timelyUpdate = true;
+
+      if (jobDiscoveryExecutor != null || jobDiscoveryExecutor.getUpdate() != null) {
+        timelyUpdate = jobDiscoveryExecutor.getUpdate();
+      }
+
       JSONArray jobs = new JSONArray();
 
       for (Method method : methods) {
 
         JobParam annotation = method.getAnnotation(JobParam.class);
 
-        JSONObject job = new JSONObject();
-        job.put("jobGroup", groupId);
-        job.put("scheduleConf", annotation.cron());
-        job.put("executorHandler", annotation.handler());
-        job.put("scheduleType", "CRON");
-        job.put("author", "UDPN");
-        job.put("jobDesc", "UDPN Task");
-        job.put("glueType", "BEAN");
-        job.put("executorRouteStrategy", "ROUND");
-        job.put("misfireStrategy", "DO_NOTHING");
-        job.put("executorBlockStrategy", "SERIAL_EXECUTION");
-        job.put("executorTimeout", 0);
-        job.put("executorFailRetryCount", 0);
+        InSigUpJob inSigUpJob = new InSigUpJob();
+        inSigUpJob.setJobGroup(groupId);
+        inSigUpJob.setScheduleConf(annotation.scheduleConf());
+        inSigUpJob.setExecutorHandler(annotation.handler());
+        inSigUpJob.setScheduleType(annotation.scheduleType());
+        inSigUpJob.setAuthor(annotation.author());
+        inSigUpJob.setJobDesc(annotation.jobDesc());
+        inSigUpJob.setGlueType(GlueTypeEnum.BEAN.getGlueType());
+        inSigUpJob.setExecutorRouteStrategy(annotation.routeStrategy());
+        inSigUpJob.setMisfireStrategy(annotation.expirationStrategy());
+        inSigUpJob.setExecutorBlockStrategy(annotation.blockingStrategy());
+        inSigUpJob.setExecutorTimeout(annotation.timeoutSecond());
+        inSigUpJob.setExecutorFailRetryCount(annotation.failRetryCount());
+        inSigUpJob.setTimelyUpdate(timelyUpdate);
+        inSigUpJob.setGroupName(jobDiscoveryExecutor.getAppname());
 
-        jobs.add(job);
+        jobs.add(JSONObject.toJSONString(inSigUpJob));
+
       }
 
       Map<String, String> headers = new HashMap<String, String>();
       headers.put("XXL-JOB-ACCESS-TOKEN", jobDiscovery.getAccessToken());
 
       String addJobStr = okHttpUtil.doPost(
-          jobDiscoveryAdmin.getAddresses() + "/api/addJob",
+          jobDiscoveryAdmin.getAddresses() + InterfaceEnum.SIG_UP_JOB.getInterfaceUrl(),
           jobs.toJSONString(),
           headers);
 
@@ -101,17 +115,17 @@ public class JobRegister implements SmartInitializingSingleton {
 
   private Integer sigUpGroup() {
 
-    JSONObject param = new JSONObject();
-    param.put("appname", jobDiscoveryExecutor.getAppname());
-    param.put("title", jobDiscoveryExecutor.getAppname());
-    param.put("addressType", 0);
+    InSigUpGroup inSigUpGroup = new InSigUpGroup();
+    inSigUpGroup.setAppname(jobDiscoveryExecutor.getAppname());
+    inSigUpGroup.setTitle(jobDiscoveryExecutor.getAppname());
+    inSigUpGroup.setAddressType(0);
 
     Map<String, String> headers = new HashMap<String, String>();
     headers.put("XXL-JOB-ACCESS-TOKEN", jobDiscovery.getAccessToken());
 
     String jobGroupJsonStr = okHttpUtil.doPost(
-        jobDiscoveryAdmin.getAddresses() + "/api/jobGroupSave",
-        param.toJSONString(),
+        jobDiscoveryAdmin.getAddresses() + InterfaceEnum.SIG_UP_GROUP.getInterfaceUrl(),
+        JSONObject.toJSONString(inSigUpGroup),
         headers);
 
     logger.info("UDPN job >>>>> add group return value:{}", jobGroupJsonStr);
