@@ -13,56 +13,67 @@ public @interface JobParam {
 
   /**
    * job handler
-   * */
+   */
   String handler();
 
   /**
-   * schedule type
-   * Can be selected from ScheduleType class
-   * */
+   * schedule type Can be selected from ScheduleType class
+   */
   String scheduleType();
 
   /**
-   * If scheduleType is CRON, you need to fill in the CRON expression.
-   * If scheduleType is FIX_RATE, you need to fill in the seconds of int value.
-   * */
+   * If scheduleType is CRON, you need to fill in the CRON expression. If scheduleType is FIX_RATE,
+   * you need to fill in the seconds of int value.
+   */
   String scheduleConf();
 
   /**
    * author
-   * */
+   */
   String author();
 
   /**
    * job desc
-   * */
+   */
   String jobDesc();
 
   /**
-   * route strategy
-   * Can be selected from RouteStrategy class
-   * */
-  String routeStrategy();
+   * alarm email
+   */
+  String alarmEmail() default "";
 
   /**
-   * expiration strategy
-   * Can be selected from ExpirationStrategy class
-   * */
-  String expirationStrategy();
+   * route strategy Can be selected from RouteStrategy class
+   */
+  String routeStrategy() default "FIRST";
 
   /**
-   * blocking strategy
-   * Can be selected from BlockingStrategy class
-   * */
-  String blockingStrategy();
+   * expiration strategy Can be selected from ExpirationStrategy class
+   */
+  String expirationStrategy() default "DO_NOTHING";
+
+  /**
+   * blocking strategy Can be selected from BlockingStrategy class
+   */
+  String blockingStrategy() default "SERIAL_EXECUTION";
 
   /**
    * timeout second
-   * */
-  int timeoutSecond();
+   */
+  int timeoutSecond() default 0;
 
   /**
    * fail retry count
-   * */
-  int failRetryCount();
+   */
+  int failRetryCount() default 0;
+
+  /**
+   * executor Param
+   */
+  String executorParam() default "";
+
+  /**
+   * child job id
+   */
+  String childJobId() default "";
 }

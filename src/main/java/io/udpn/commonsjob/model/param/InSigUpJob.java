@@ -16,6 +16,9 @@ public class InSigUpJob {
   private Integer executorFailRetryCount;
   private Boolean timelyUpdate;
   private String groupName;
+  private String alarmEmail;
+  private String executorParam;
+  private String childJobId;
 
   public Integer getJobGroup() {
     return jobGroup;
@@ -127,5 +130,29 @@ public class InSigUpJob {
 
   public void setGroupName(String groupName) {
     this.groupName = groupName;
+  }
+
+  public String getAlarmEmail() {
+    return alarmEmail;
+  }
+
+  public void setAlarmEmail(String alarmEmail) {
+    this.alarmEmail = alarmEmail;
+  }
+
+  public String getExecutorParam() {
+    return executorParam;
+  }
+
+  public void setExecutorParam(String executorParam) {
+    this.executorParam = executorParam;
+  }
+
+  public String getChildJobId() {
+    return childJobId;
+  }
+
+  public void setChildJobId(String childJobId) {
+    this.childJobId = childJobId;
   }
 }

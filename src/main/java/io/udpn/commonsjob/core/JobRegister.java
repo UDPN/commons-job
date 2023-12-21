@@ -92,8 +92,11 @@ public class JobRegister implements SmartInitializingSingleton {
         inSigUpJob.setExecutorFailRetryCount(annotation.failRetryCount());
         inSigUpJob.setTimelyUpdate(timelyUpdate);
         inSigUpJob.setGroupName(jobDiscoveryExecutor.getAppname());
+        inSigUpJob.setAlarmEmail(annotation.alarmEmail());
+        inSigUpJob.setExecutorParam(annotation.executorParam());
+        inSigUpJob.setChildJobId(annotation.childJobId());
 
-        jobs.add(JSONObject.toJSONString(inSigUpJob));
+        jobs.add(JSONObject.toJSON(inSigUpJob));
 
       }
 
