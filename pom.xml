@@ -8,6 +8,30 @@
   <artifactId>commons-job</artifactId>
   <version>0.0.1-RELEASE</version>
 
+  <name>commons-job</name>
+  <url>http://maven.apache.org</url>
+  <description>
+    Unified use of UDPN-JOB service SDK
+  </description>
+  <licenses>
+    <license>
+      <name>Copyright 2023 Red Date Technology Ltd.  Licensed under MPLv2</name>
+      <url>https://www.mozilla.org/en-US/MPL/2.0/</url>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://github.com/UDPN/commons-job</url>
+    <connection>https://github.com/UDPN/commons-job.git</connection>
+  </scm>
+  <developers>
+    <developer>
+      <name>udpn</name>
+      <url>https://udpn.io</url>
+    </developer>
+  </developers>
+
+
+
   <properties>
     <java.version>8</java.version>
     <maven.compiler.source>8</maven.compiler.source>
